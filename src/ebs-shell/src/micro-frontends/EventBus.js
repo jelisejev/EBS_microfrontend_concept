@@ -1,19 +1,18 @@
 const apps = [];
 
-const eventListener = (m) => {
-  console.log(m);
-};
-
 const register = (window) => {
-  window.addEventListener('message', eventListener);
+  window.addEventListener('message', () => console.log('zz'));
 
   apps.push(window);
-
-  // return () => {
-  //   iframe.
-  // }
 };
+
+const post = (message) => {
+  apps.forEach(app => {
+    app.postMessage(message, '*')
+  })
+}
 
 export {
   register,
+  post,
 }
