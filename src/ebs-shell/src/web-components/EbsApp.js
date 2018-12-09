@@ -1,3 +1,5 @@
+import evalScripts from './Eval';
+
 class EbsApp extends HTMLElement {
   shadowRoot;
 
@@ -24,6 +26,10 @@ class EbsApp extends HTMLElement {
     const content = await response.text();
 
     this.shadowRoot.innerHTML = content;
+
+    // evalScripts(this.shadowRoot);
+
+    // console.log(this.shadowRoot.querySelectorAll('script'));
   }
 }
 
