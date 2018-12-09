@@ -1,12 +1,17 @@
 <template>
-  <iframe v-bind:src="src"></iframe>
+  <iframe v-bind:src="src" ref="iframe"></iframe>
 </template>
 
 <script>
+import {register} from "./EventBus";
+
 export default {
   name: 'ebs-app',
   props: {
     src: String
+  },
+  mounted() {
+    register(this.$refs.iframe);
   }
 }
 </script>
