@@ -1,8 +1,8 @@
-import {register, post} from "../EventBus";
+import {subcribe, post} from "../EventBus";
 
 describe('EventBus', () => {
   it('allows to subscribe to messages', () => {
-    register(window);
+    subcribe(window);
     jest.spyOn(window, 'postMessage');
 
     post('test-message');

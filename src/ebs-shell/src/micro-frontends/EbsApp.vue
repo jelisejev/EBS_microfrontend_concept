@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {register} from "./EventBus";
+import {subcribe} from "./EventBus";
 
 export default {
   name: 'ebs-app',
@@ -11,7 +11,7 @@ export default {
     src: String
   },
   mounted() {
-    register(this.$refs.iframe);
+    subcribe(this.$refs.iframe);
   }
 }
 </script>
