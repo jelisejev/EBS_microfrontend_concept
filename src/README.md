@@ -31,7 +31,13 @@ communication between micr-frontends.
 
 ### Rendering mico-frontends
 
-TODO
+Micro-frontends are rendered using iframes. This allows to:
+1. Easily embed remote applications in the shell.
+2. Encapsulate its HTML and CSS.
+3. Completely isolate its JavaScript runtime.
+
+From the downsides of this approach one can note that some additional efforts might be required to make the iframe
+fit nicely in the overall layout of the application.
 
 ### Communication
 
