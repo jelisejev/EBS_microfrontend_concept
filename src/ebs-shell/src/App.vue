@@ -5,15 +5,30 @@
     </header>
     <content>
       <ebs-app src="/contacts"></ebs-app>
+      <ebs-app src="/contacts"></ebs-app>
     </content>
   </div>
 </template>
 
 <script>
 import EbsApp from "./micro-frontends/EbsApp";
+import {connect} from './micro-frontends/EventBus';
+
 export default {
   name: 'app',
   components: {EbsApp},
+  mounted() {
+    console.log('mounted');
+    connect(window);
+
+    window.addEventListener('message', (e) => {
+      // if (typeof e.data !== 'string' || e.data.indexOf('app.') !== -1) {
+      //   return;
+      // }
+
+      console.log(e);
+    });
+  }
 }
 </script>
 

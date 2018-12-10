@@ -3,7 +3,9 @@
 </template>
 
 <script>
-import {subcribe} from "./EventBus";
+import {connect} from "./EventBus";
+
+let unsubscribe;
 
 export default {
   name: 'ebs-app',
@@ -11,7 +13,11 @@ export default {
     src: String
   },
   mounted() {
-    subcribe(this.$refs.iframe);
+    // console.log('connect');
+    unsubscribe = connect(this.$refs.iframe.contentWindow);
+  },
+  beforeDestroy() {
+    // unsubscribe();
   }
 }
 </script>

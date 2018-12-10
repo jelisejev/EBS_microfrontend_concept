@@ -42,8 +42,14 @@ export default {
     increment() {
       this.counter++;
 
-      window.postMessage('increment');
+      console.log('window.postMessage(\'increment\')');
+      window.postMessage({
+        type: 'app.increment'
+      });
     }
+  },
+  mounted() {
+    console.log('page mounted')
   }
 }
 </script>

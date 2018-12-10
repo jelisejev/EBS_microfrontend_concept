@@ -1,44 +1,115 @@
-import {subcribe, post} from "../EventBus";
+import {connect} from "../EventBus";
 
 describe('EventBus', () => {
-  it('allows to subscribe to messages', () => {
-    subcribe(window);
-    jest.spyOn(window, 'postMessage');
+  let iframe1;
+  let iframe2;
+  beforeEach(() => {
+    iframe1 = document.createElement('iframe');
+    document.body.appendChild(iframe1);
 
-    post('test-message');
+    iframe2 = document.createElement('iframe');
+    document.body.appendChild(iframe2);
 
-    expect(window.postMessage).toHaveBeenCalledWith('test-message', expect.anything());
-
-    window.postMessage.mockRestore();
+    connect(iframe1.contentWindow);
+    connect(iframe2.contentWindow);
   });
 
-  it('allows to unsubsribe from messages', () => {
-    const unsubscribe = subcribe(window);
-    jest.spyOn(window, 'postMessage');
+  it('sends messages to other consumers', () => {
+    jest.spyOn(iframe2.contentWindow, 'postMessage');
+
+    const message = {type: 'app.test'};
+
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: message
+    }));
+
+    expect(iframe2.contentWindow.postMessage).toHaveBeenCalledWith(
+      expect.objectContaining(message),
+      expect.anything()
+    );
+  });
+
+  it('allows to unsubscribe from messages', () => {
+    const iframe3 = document.createElement('iframe');
+    document.body.appendChild(iframe3);
+
+    const unsubscribe = connect(iframe3.contentWindow);
+
+    jest.spyOn(iframe3.contentWindow, 'postMessage');
+
+    const message = {type: 'app.test'};
+
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: message
+    }));
+
+    expect(iframe3.contentWindow.postMessage).toHaveBeenCalledWith(
+      expect.objectContaining(message),
+      expect.anything()
+    );
+
     unsubscribe();
 
-    post('test-message');
+    iframe3.contentWindow.postMessage.mockClear();
 
-    expect(window.postMessage).not.toHaveBeenCalled();
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: {type: 'app.new-message'}
+    }));
 
-    window.postMessage.mockRestore();
+    expect(iframe3.contentWindow.postMessage).not.toHaveBeenCalled();
+
+    iframe3.remove();
   });
 
-  it('re-transmits received messages', () => {
-    const iframe = document.createElement('iframe');
-    document.body.appendChild(iframe);
+  it('does not send the message to the source', () => {
+    jest.spyOn(iframe1.contentWindow, 'postMessage');
 
-    subcribe(window);
-    subcribe(iframe.contentWindow);
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: {type: 'app.test'}
+    }));
 
-    jest.spyOn(iframe.contentWindow, 'postMessage');
+    expect(iframe1.contentWindow.postMessage).not.toHaveBeenCalled();
+  });
 
-    const event = new MessageEvent('message', {
-      data: 'test-message'
-    });
-    window.dispatchEvent(event);
+  it('only broadcasts app messages', () => {
+    jest.spyOn(iframe2.contentWindow, 'postMessage');
 
-    expect(iframe.contentWindow.postMessage).toHaveBeenCalledWith('test-message', expect.anything());
-    iframe.remove();
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: {type: 'test'}
+    }));
+
+    expect(iframe2.contentWindow.postMessage).not.toHaveBeenCalled();
+  });
+
+  it('does not crash when posting other data types', () => {
+    jest.spyOn(iframe2.contentWindow, 'postMessage');
+
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: 'string'
+    }));
+
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: {}
+    }));
+
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message'));
+  });
+
+  it('does not alter the original message', () => {
+    const message = {type: 'app.test'};
+    const originalJson = JSON.stringify(message);
+
+    iframe1.contentWindow.dispatchEvent(new MessageEvent('message', {
+      data: message
+    }));
+
+    expect(JSON.stringify(message)).toEqual(originalJson);
+  })
+
+  afterEach(() => {
+    iframe1.remove();
+    iframe2.remove();
+
+    jest.clearAllMocks();
   })
 });
