@@ -1,9 +1,13 @@
-const apps = [];
+let apps = [];
 
 const subcribe = (window) => {
-  window.addEventListener('message', () => console.log('zz'));
+  window.addEventListener('message', (e) => post(e.data));
 
   apps.push(window);
+
+  return () => {
+    apps = apps.filter(app => app !== window);
+  }
 };
 
 const post = (message) => {
