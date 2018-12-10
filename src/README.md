@@ -25,7 +25,7 @@ The solution consists of the following major components:
 The shell app contains an `EbsApp` Vue.js component to render each micro-frontend and a `EventBus` to enable 
 communication between micr-frontends.
 
-![Shell](docs/shell.mmd.svg)
+![Shell](docs/shell.mmd.svg =700x)
 
 ## Runtime view
 
