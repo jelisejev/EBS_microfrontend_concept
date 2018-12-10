@@ -13,11 +13,10 @@ export default {
     src: String
   },
   mounted() {
-    // console.log('connect');
     unsubscribe = connect(this.$refs.iframe.contentWindow);
   },
   beforeDestroy() {
-    // unsubscribe();
+    unsubscribe();
   }
 }
 </script>
