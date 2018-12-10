@@ -1,48 +1,29 @@
 # micro-frontend concept
 
-A PoC implementation of the micro-frontend pattern. Main goals:
+A PoC implementation of the micro-frontend pattern. The main goals of the concept are:
 - Ease of maintenance;
 - Stability;
 - Freedom to choose different tech stacks.
 
-Useful articles on the micro-frontend pattern:
-- https://medium.embengineering.com/micro-front-ends-whats-the-best-solution-3bc31218eae4
-- https://medium.com/@_rchaves_/building-microfrontends-part-i-creating-small-apps-710d709b48b7
+## Concept
 
-# Development
+- The main part of each screen is separated in its own micro-frontend
+- Micro-frontends are renders inside a "shell" application.
+- Each micro-frontend is hosted as a separate application to allow for an independent life cycle.
 
-## Development mode
 
-1. Run the contact app:
+![Concept](docs/concept.mmd.svg)
 
-```bash
-cd ebs-contacts
-yarn
-yarn dev
-```
+## Components
 
-1. Run the shell app:
+- The "shell" application is implemented using Vue.js CLI
+- Two micro-frontends: contacts and contracts (TODO) are implemented using Nuxt.js and server-side rendering.
 
-```bash
-cd ebs-shell
-yarn
-yarn serve
-```
-
-## Running in Docker 
+# Embedding micro-frontends
 
 TODO
 
-# Features
-
-## Structure
-
-TODO
-
-- ebs-contacts
-- ebs-shell
-
-## Communication
+# Communication
 
 The micro-frontends need to be able to communicate with other micro-frontends and the shell itself. To enable easier
 integration of new micro-frontends, the communication is done using an event-based API.
@@ -71,12 +52,33 @@ The `type` property needs to start with `app.` to distinguish application messag
 
 ![Messaging](docs/messaging.mmd.svg)
 
-## Routing and paths
+# Deployment view
 
-TODO 
+TODO
 
-- proxy setup
-- prod setup
+# Development
+
+## Development mode
+
+1. Run the contact app:
+
+```bash
+cd ebs-contacts
+yarn
+yarn dev
+```
+
+1. Run the shell app:
+
+```bash
+cd ebs-shell
+yarn
+yarn serve
+```
+
+## Running in Docker 
+
+TODO
 
 # Notes
 
@@ -100,3 +102,9 @@ References on using web components:
 - https://developer.mozilla.org/en-US/docs/Web/Web_Components
 - https://www.sitepen.com/blog/2018/07/06/web-components-in-2018/
 - https://custom-elements-everywhere.com/
+
+# References
+
+Useful articles on the micro-frontend pattern:
+- https://medium.embengineering.com/micro-front-ends-whats-the-best-solution-3bc31218eae4
+- https://medium.com/@_rchaves_/building-microfrontends-part-i-creating-small-apps-710d709b48b7
