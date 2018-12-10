@@ -11,19 +11,29 @@ A PoC implementation of the micro-frontend pattern. The main goals of the concep
 - Micro-frontends are renders inside a "shell" application.
 - Each micro-frontend is hosted as a separate application to allow for an independent life cycle.
 
+## Building block view
 
-![Concept](docs/concepts.png)
-
-## Components
-
+The solution consists of the following major components:
 - The "shell" application is implemented using Vue.js CLI
 - Two micro-frontends: contacts and contracts (TODO) are implemented using Nuxt.js and server-side rendering.
 
-# Embedding micro-frontends
+
+![Concept](docs/concepts.png)
+
+#### Shell
+
+The shell app contains an `EbsApp` Vue.js component to render each micro-frontend and a `EventBus` to enable 
+communication between micr-frontends.
+
+![Shell](docs/shell.mmd.svg)
+
+## Runtime view
+
+### Rendering mico-frontends
 
 TODO
 
-# Communication
+### Communication
 
 The micro-frontends need to be able to communicate with other micro-frontends and the shell itself. To enable easier
 integration of new micro-frontends, the communication is done using an event-based API.
@@ -52,13 +62,13 @@ The `type` property needs to start with `app.` to distinguish application messag
 
 ![Messaging](docs/messaging.mmd.svg)
 
-# Deployment view
+## Deployment view
 
 TODO
 
-# Development
+## Development
 
-## Development mode
+### Development mode
 
 1. Run the contact app:
 
@@ -76,13 +86,13 @@ yarn
 yarn serve
 ```
 
-## Running in Docker 
+### Running in Docker 
 
 TODO
 
-# Notes
+# #Notes
 
-## Web Components
+### Web Components
 
 Using web components to embed server-side rendered applications has a number of issues:
 - JS contained in the embedded app needs to be executed manually. When loading the app using ajax and including it
@@ -103,7 +113,7 @@ References on using web components:
 - https://www.sitepen.com/blog/2018/07/06/web-components-in-2018/
 - https://custom-elements-everywhere.com/
 
-# References
+## References
 
 Useful articles on the micro-frontend pattern:
 - https://medium.embengineering.com/micro-front-ends-whats-the-best-solution-3bc31218eae4
