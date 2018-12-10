@@ -12,7 +12,7 @@ A PoC implementation of the micro-frontend pattern. The main goals of the concep
 - Each micro-frontend is hosted as a separate application to allow for an independent life cycle.
 
 
-![Concept](docs/concept.mmd.svg)
+![Concept](docs/concepts.png)
 
 ## Components
 
