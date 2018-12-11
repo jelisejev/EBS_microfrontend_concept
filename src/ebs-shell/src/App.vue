@@ -19,6 +19,8 @@ import './css/layout.css';
 import './css/styles.css';
 import './css/tables.css';
 
+import './assets/js/control'
+
 let unsubscribe;
 
 export default {
