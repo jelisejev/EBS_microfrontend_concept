@@ -2,9 +2,9 @@
   <div class="dataset-item specific_module" onclick="pagesetFunction(event, 'basic-profile-page')">
     <div class="contact-details"><!-- Start contact details -->
       <ul class="contacts">
-        <li><span class="most-important contact-person">Mr Alexander Puschkin</span></li>
+        <li><span class="most-important contact-person">{{contact.name}}</span></li>
         <li><span class="energicos-blue"><i class="icon icon-mail2"></i></span>
-          <span class="contact-email">kasa@gmail.com</span>
+          <span class="contact-email">{{contact.email}}</span>
         </li>
         <li><span class="energicos-green"><i class="icon icon-phone"></i></span>
           <span class="phone-no">+49 30 52 00522125</span>
@@ -84,7 +84,7 @@
             <a href="#" class="btn btn-orange" onclick="location.href='#'">Group 3</a>
           </div>
         </div>
-
+k
       </div>
     </div>
 
@@ -98,6 +98,7 @@
 </template>
 <script>
   export default {
-    name: 'contact-row'
+    name: 'contact-row',
+    props: ['contact'],
   }
 </script>
