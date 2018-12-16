@@ -71,7 +71,10 @@ The `type` property needs to start with `app.` to distinguish application messag
 
 ## Deployment view
 
-TODO
+Each micro-frontend the shell app is deployed as a separate Docker container. All of them a served via a single reverse Nginx proxy.
+The proxy is used to avoid limitations with loading resources from different domains. It can also be used for SSL and HTTP/2 termination.
+
+![Deployment](docs/deployment.mmd.svg)
 
 ## Development
 
