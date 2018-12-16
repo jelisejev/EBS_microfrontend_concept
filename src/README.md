@@ -15,7 +15,8 @@ A PoC implementation of the micro-frontend pattern. The main goals of the concep
 
 The solution consists of the following major components:
 - The "shell" application is implemented using Vue.js CLI
-- Two micro-frontends: contacts and contracts (TODO) are implemented using Nuxt.js and server-side rendering.
+- Several micro-frontends: contact manager, organization manager, pod manager, building manager, TAM and settings.
+- A reverse proxy to serve the shell and micro-frontends.
 
 
 ![Concept](docs/concepts.png)
