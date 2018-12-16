@@ -6,6 +6,7 @@ import TamApp from "./components/apps/TamApp";
 import PodApp from "./components/apps/PodApp";
 import OrganizationApp from "./components/apps/OrganizationApp";
 import BuildingApp from "./components/apps/BuildingApp";
+import Crm from "./components/Crm";
 
 Vue.use(Router);
 
@@ -13,10 +14,29 @@ export default new Router({
   mode: 'history',
   routes: [
     { path: '/', redirect: { name: 'contacts' }},
-    {
-      path: '/contacts',
-      name: 'contacts',
-      component: ContactsApp,
+    { path: '/crm', component: Crm,
+      children: [
+        {
+          path: 'contacts',
+          name: 'contacts',
+          component: ContactsApp,
+        },
+        {
+          path: 'pod',
+          name: 'pod',
+          component: PodApp,
+        },
+        {
+          path: 'organization',
+          name: 'organization',
+          component: OrganizationApp,
+        },
+        {
+          path: 'building',
+          name: 'building',
+          component: BuildingApp,
+        },
+      ]
     },
     {
       path: '/settings',
@@ -27,21 +47,6 @@ export default new Router({
       path: '/tam',
       name: 'tam',
       component: TamApp,
-    },
-    {
-      path: '/pod',
-      name: 'pod',
-      component: PodApp,
-    },
-    {
-      path: '/organization',
-      name: 'organization',
-      component: OrganizationApp,
-    },
-    {
-      path: '/building',
-      name: 'building',
-      component: BuildingApp,
     },
   ]
 })
