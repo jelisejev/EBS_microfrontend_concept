@@ -77,7 +77,7 @@ TODO
 
 ### Development mode
 
-1. Run the contact app:
+1. Run a micro-service that you need, e.g. contacts:
 
 ```bash
 cd ebs-contacts
