@@ -26,10 +26,28 @@
       </nav-level-2>
     </navigation-level-2><!-- End Nav Level 2 -->
 
-    <router-view></router-view>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </section>
 </template>
 <script>
   export default {
   }
 </script>
+<style scoped>
+  section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    flex: 1;
+  }
+</style>
