@@ -13,7 +13,7 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/', redirect: { name: 'contacts' }},
+    { path: '/', name: 'home', redirect: { name: 'contacts' }},
     { path: '/crm', component: Crm,
       children: [
         {

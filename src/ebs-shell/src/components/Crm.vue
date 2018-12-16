@@ -5,11 +5,21 @@
         <!-- Start key nav tabs -->
         <div class="container-body">
           <div class="key-nav-tabs">
-            <button class="tab-home" onclick="location.href='#'"><i class="icon icon-nexus"></i></button>
-            <button class="sub_module" onclick="location.href='contact-manager.html'">Contact Manager</button>
-            <button class="sub_module" onclick="location.href='organization-manager.html'">Organization Manager</button>
-            <button class="sub_module active" onclick="location.href='pod-manager.html'">POD Manager</button>
-            <button class="sub_module" onclick="location.href='building-manager.html'">Building Manager</button>
+            <router-link tag="button" class="tab-home" to="/" >
+              <i class="icon icon-nexus"></i>
+            </router-link>
+            <router-link tag="button" class="sub_module" to="contacts" active-class="active">
+              Contact Manager
+            </router-link>
+            <router-link tag="button" class="sub_module" to="organization" active-class="active">
+              Organization Manager
+            </router-link>
+            <router-link tag="button" class="sub_module" to="pod" active-class="active">
+              POD Manager
+            </router-link>
+            <router-link tag="button" class="sub_module" to="building" active-class="active">
+              Building Manager
+            </router-link>
           </div>
         </div>
         <!-- End key nav tabs -->
@@ -21,6 +31,5 @@
 </template>
 <script>
   export default {
-
   }
 </script>
