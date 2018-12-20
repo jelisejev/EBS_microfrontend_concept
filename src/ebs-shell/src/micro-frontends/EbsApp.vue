@@ -19,9 +19,6 @@ export default {
 
     iFrameResize({
       log: true,
-      autoResize: true,
-      heightCalculationMethod: 'bodyScroll',
-      // sizeHeight: true,
     }, this.$refs.iframe)
 
   },
