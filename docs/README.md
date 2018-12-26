@@ -23,10 +23,17 @@ The solution consists of the following major components:
 
 ### Shell
 
+The shell app is generated using [Vue CLI](https://cli.vuejs.org/) to avoid maintaining a custom project setup.
+
 The shell app contains an `EbsApp` Vue.js component to render each micro-frontend and a `EventBus` to enable 
-communication between micr-frontends.
+communication between micro-frontends.
 
 ![Shell](img/shell.mmd.svg)
+
+### Micro-frontends
+
+Each micro-frontend is based on [Nuxt.js](https://nuxtjs.org/guide) as the most popular out of the box implementation of
+server-side rendering for Vue.js. 
 
 ## Runtime view
 
