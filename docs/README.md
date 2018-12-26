@@ -25,8 +25,8 @@ The solution consists of the following major components:
 
 The shell app is generated using [Vue CLI](https://cli.vuejs.org/) to avoid maintaining a custom project setup.
 
-The shell app contains an `EbsApp` Vue.js component to render each micro-frontend and a `EventBus` to enable 
-communication between micro-frontends.
+The shell app uses the [EbsApp](../src/ebs-shell/src/micro-frontends/EbsApp.vue) component Vue.js component to render each micro-frontend 
+and the [EventBus](../src/ebs-shell/src/micro-frontends/EventBus.js) to enable communication between micro-frontends.
 
 ![Shell](img/shell.mmd.svg)
 
@@ -107,7 +107,9 @@ npm run serve
 
 To start the application using Docker run `docker-compose up` and open [localhost:3000](http://localhost:3000) in your browser.
 
-# #Notes
+### Adding new micro-frontends
+
+# Notes
 
 ### Web Components
 
