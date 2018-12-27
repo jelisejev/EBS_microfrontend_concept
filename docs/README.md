@@ -116,17 +116,17 @@ To add a new micro-frontend using Nuxt.js follow these steps:
 ```
 npx create-nuxt-app <project-name>
 ```
-1. Configure the base URL for the app to properly serve assets by adding the following code to the `nuxt.config.js` file:
+2. Configure the base URL for the app to properly serve assets by adding the following code to the `nuxt.config.js` file:
 ```js
   router: {
     base: '/<app-url>/'
   }
 ```
-1. Choose and configure a unique port for the app. 
-1. You should now be able to run the app using `npm run dev` and open it on 
+3. Choose and configure a unique port for the app. 
+4. You should now be able to run the app using `npm run dev` and open it on 
 `http://localhost:<port>/<app-url>/`
-1. Create a proxy in the `ebs-shell` `vue.config.js` to serve the app in development mode. Verify that its working by running the shell and opening `/<app-url/`.
-1. Render the micro-frontend in the shell-app using the `EbsApp` component.
+5. Create a proxy in the `ebs-shell` `vue.config.js` to serve the app in development mode. Verify that its working by running the shell and opening `/<app-url/`.
+6. Render the micro-frontend in the shell-app using the `EbsApp` component.
 
 #### Production setup
 1. Add a `Dockerfile` to the new project.
